@@ -36,7 +36,7 @@ extern "C" {
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
-extern uint8_t stm = 0;
+extern int stm;
 
 /* USER CODE END ET */
 

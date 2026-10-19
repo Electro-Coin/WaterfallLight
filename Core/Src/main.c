@@ -55,6 +55,8 @@ void SystemClock_Config(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+int stm = 1;
+
 //批量调整LED亮灭
 void LED_set(int lr, int ly, int lg_0, int lg_1, int lg_2, int lg_3) {
   switch (lr) {
@@ -160,8 +162,8 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-  uint32_t counter = 0;
-  uint8_t stm = 0;
+  int counter = 0;
+
 
   /* USER CODE END 2 */
 
@@ -169,7 +171,36 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    switch (counter % 6) {
+      case 0:
+        LED_set(1, 0, 0, 0, 0, 0);
+        break;
+      case 1:
+        LED_set(0, 1, 0, 0, 0, 0);
+        break;
+      case 2:
+        LED_set(0, 0, 1, 0, 0, 0);
+        break;
+      case 3:
+        LED_set(0, 0, 0, 1, 0, 0);
+        break;
+      case 4:
+        LED_set(0, 0, 0, 0, 1, 0);
+        break;
+      case 5:
+        LED_set(0, 0, 0, 0, 0, 1);
+        break;
+      default:
+        break;
+    }
 
+    counter += stm;
+    if (counter < 0) {
+      counter = 5;
+    }
+    if (counter >= 6) {
+      counter = 0;
+    }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

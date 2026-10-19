@@ -204,7 +204,19 @@ void SysTick_Handler(void)
 void EXTI15_10_IRQHandler(void)
 {
   /* USER CODE BEGIN EXTI15_10_IRQn 0 */
-
+  HAL_Delay(10);
+  if (HAL_GPIO_ReadPin(BUTTON_GPIO_Port, BUTTON_Pin) == GPIO_PIN_SET) {
+    switch (stm) {
+      case 1:
+        stm = -1;
+        break;
+      case -1:
+        stm = 1;
+        break;
+      default:
+        Error_Handler();
+    }
+  }
   /* USER CODE END EXTI15_10_IRQn 0 */
   HAL_GPIO_EXTI_IRQHandler(BUTTON_Pin);
   /* USER CODE BEGIN EXTI15_10_IRQn 1 */
