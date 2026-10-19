@@ -55,6 +55,79 @@ void SystemClock_Config(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+//批量调整LED亮灭
+void LED_set(int lr, int ly, int lg_0, int lg_1, int lg_2, int lg_3) {
+  switch (lr) {
+    case 0:
+      HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_RESET);
+      break;
+    case 1:
+      HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_SET);
+      break;
+    default:
+      goto label_errorHandle;
+      break;
+  }
+  switch (ly) {
+    case 0:
+      HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, GPIO_PIN_RESET);
+      break;
+    case 1:
+      HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, GPIO_PIN_SET);
+      break;
+    default:
+      goto label_errorHandle;
+      break;
+  }
+  switch (lg_0) {
+    case 0:
+      HAL_GPIO_WritePin(LED_GREEN_0_GPIO_Port, LED_GREEN_0_Pin, GPIO_PIN_RESET);
+      break;
+    case 1:
+      HAL_GPIO_WritePin(LED_GREEN_0_GPIO_Port, LED_GREEN_0_Pin, GPIO_PIN_SET);
+      break;
+    default:
+      goto label_errorHandle;
+      break;
+  }
+  switch (lg_1) {
+    case 0:
+      HAL_GPIO_WritePin(LED_GREEN_1_GPIO_Port, LED_GREEN_1_Pin, GPIO_PIN_RESET);
+      break;
+    case 1:
+      HAL_GPIO_WritePin(LED_GREEN_1_GPIO_Port, LED_GREEN_1_Pin, GPIO_PIN_SET);
+      break;
+    default:
+      goto label_errorHandle;
+      break;
+  }
+  switch (lg_2) {
+    case 0:
+      HAL_GPIO_WritePin(LED_GREEN_2_GPIO_Port, LED_GREEN_2_Pin, GPIO_PIN_RESET);
+      break;
+    case 1:
+      HAL_GPIO_WritePin(LED_GREEN_2_GPIO_Port, LED_GREEN_2_Pin, GPIO_PIN_SET);
+      break;
+    default:
+      goto label_errorHandle;
+      break;
+  }
+  switch (lg_3) {
+    case 0:
+      HAL_GPIO_WritePin(LED_GREEN_3_GPIO_Port, LED_GREEN_3_Pin, GPIO_PIN_RESET);
+      break;
+    case 1:
+      HAL_GPIO_WritePin(LED_GREEN_3_GPIO_Port, LED_GREEN_3_Pin, GPIO_PIN_SET);
+      break;
+    default:
+      goto label_errorHandle;
+      break;
+  }
+  return;
+  label_errorHandle:
+  Error_Handler();
+}
+
 /* USER CODE END 0 */
 
 /**
@@ -87,6 +160,8 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
+  uint32_t counter = 0;
+  uint8_t stm = 0;
 
   /* USER CODE END 2 */
 
@@ -94,6 +169,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
