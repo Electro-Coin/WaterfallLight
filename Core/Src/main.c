@@ -55,6 +55,7 @@ void SystemClock_Config(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+//状态，1为正序，-1为倒序
 int stm = 1;
 
 //批量调整LED亮灭
@@ -162,7 +163,9 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-  int counter = 0;
+
+  //循环计数变量
+  int counter = -1;   //设为-1以实现从LED_GREEN_0开始亮
 
   /* USER CODE END 2 */
 
@@ -170,6 +173,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+
     counter += stm;
     if (counter < 0) {
       counter = 5;
@@ -177,6 +181,7 @@ int main(void)
     if (counter >= 6) {
       counter = 0;
     }
+
     switch (counter % 6) {
       case 0:
         LED_set(1, 0, 0, 0, 0, 0);
@@ -197,10 +202,8 @@ int main(void)
         LED_set(0, 0, 0, 0, 0, 1);
         break;
       default:
-        break;
+        Error_Handler();
     }
-
-
 
     HAL_Delay(500);
     /* USER CODE END WHILE */
