@@ -170,6 +170,13 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    counter += stm;
+    if (counter < 0) {
+      counter = 5;
+    }
+    if (counter >= 6) {
+      counter = 0;
+    }
     switch (counter % 6) {
       case 0:
         LED_set(1, 0, 0, 0, 0, 0);
@@ -193,13 +200,7 @@ int main(void)
         break;
     }
 
-    counter += stm;
-    if (counter < 0) {
-      counter = 5;
-    }
-    if (counter >= 6) {
-      counter = 0;
-    }
+
 
     HAL_Delay(500);
     /* USER CODE END WHILE */
