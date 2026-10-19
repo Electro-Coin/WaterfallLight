@@ -36,6 +36,7 @@ extern "C" {
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
+extern uint8_t stm = 0;
 
 /* USER CODE END ET */
 
@@ -57,6 +58,9 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define BUTTON_Pin GPIO_PIN_11
+#define BUTTON_GPIO_Port GPIOB
+#define BUTTON_EXTI_IRQn EXTI15_10_IRQn
 #define LED_GREEN_0_Pin GPIO_PIN_15
 #define LED_GREEN_0_GPIO_Port GPIOB
 #define LED_GREEN_1_Pin GPIO_PIN_8
