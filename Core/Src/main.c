@@ -58,29 +58,7 @@ void SystemClock_Config(void);
 int stm = 1;
 
 //批量调整LED亮灭
-void LED_set(int lr, int ly, int lg_0, int lg_1, int lg_2, int lg_3) {
-  switch (lr) {
-    case 0:
-      HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_RESET);
-      break;
-    case 1:
-      HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_SET);
-      break;
-    default:
-      goto label_errorHandle;
-      break;
-  }
-  switch (ly) {
-    case 0:
-      HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, GPIO_PIN_RESET);
-      break;
-    case 1:
-      HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, GPIO_PIN_SET);
-      break;
-    default:
-      goto label_errorHandle;
-      break;
-  }
+void LED_set( int lg_0, int lg_1, int lg_2, int lg_3, int ly, int lr) {
   switch (lg_0) {
     case 0:
       HAL_GPIO_WritePin(LED_GREEN_0_GPIO_Port, LED_GREEN_0_Pin, GPIO_PIN_RESET);
@@ -125,6 +103,28 @@ void LED_set(int lr, int ly, int lg_0, int lg_1, int lg_2, int lg_3) {
       goto label_errorHandle;
       break;
   }
+  switch (ly) {
+    case 0:
+      HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, GPIO_PIN_RESET);
+      break;
+    case 1:
+      HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, GPIO_PIN_SET);
+      break;
+    default:
+      goto label_errorHandle;
+      break;
+  }
+  switch (lr) {
+    case 0:
+      HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_RESET);
+      break;
+    case 1:
+      HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_SET);
+      break;
+    default:
+      goto label_errorHandle;
+      break;
+  }
   return;
   label_errorHandle:
   Error_Handler();
@@ -164,7 +164,6 @@ int main(void)
   /* USER CODE BEGIN 2 */
   int counter = 0;
 
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -201,6 +200,8 @@ int main(void)
     if (counter >= 6) {
       counter = 0;
     }
+
+    HAL_Delay(500);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
